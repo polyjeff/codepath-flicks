@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MovieCell.h"
 #import "MovieModel.h"
+#import "DetailsViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface ViewController () <UITableViewDataSource>
@@ -31,6 +32,14 @@
     }
     [self fetchMovies];
     
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    MovieCell *cellPtr = sender;
+    NSIndexPath *indexPath = [self.movieTableView indexPathForCell:cellPtr];
+    MovieModel *model = [self.movies objectAtIndex:indexPath.row];
+    DetailsViewController *dvc = segue.destinationViewController;
+    dvc.movieModel = model;
 }
 
 - (void)fetchMovies
@@ -57,13 +66,13 @@
                                             [NSJSONSerialization JSONObjectWithData:data
                                                     options:kNilOptions
                                                     error:&jsonError];
-                                        NSLog(@"Response: %@", responseDictionary);
+                                        // NSLog(@"Response: %@", responseDictionary);
                                         NSArray *results = responseDictionary[@"results"];
                                         NSMutableArray *models = [NSMutableArray array];
                                         
                                         for (NSDictionary *result in results) {
                                             MovieModel *model = [[MovieModel alloc] initWithDictionary:result];
-                                            NSLog(@"Model - %@", model);
+                                            // NSLog(@"Model - %@", model);
                                             [models addObject:model];
                                         }
                                         self.movies = models;
