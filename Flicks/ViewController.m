@@ -11,6 +11,7 @@
 #import "MovieModel.h"
 #import "DetailsViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <MBProgressHUD.h>
 
 @interface ViewController () <UITableViewDataSource>
 
@@ -56,6 +57,8 @@
                                   delegate:nil
                              delegateQueue:[NSOperationQueue mainQueue]];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
             completionHandler:^(NSData * _Nullable data,
                                 NSURLResponse * _Nullable response,
@@ -82,6 +85,7 @@
                                         NSLog(@"An error occurred: %@",
                                                           error.description);
                                     }
+                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                                 }];
     [task resume];
 
