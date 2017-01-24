@@ -24,15 +24,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.movieDescription);
+    
+    // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.movieDescription);
     // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.posterURL);
     // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.hiresPosterURL);
-    NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.releaseDate);
+    // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.releaseDate);
     self.detailMovieTitle.text = self.movieModel.title;
     self.detailMovieDescription.text = self.movieModel.movieDescription;
     self.releaseDate.text = [NSString stringWithFormat:@"Released %@", self.movieModel.releaseDate];
     self.averageVote.text = [NSString stringWithFormat:@"Score: %@/10", self.movieModel.voteAverage];
     [self.detailImageView setImageWithURL:self.movieModel.hiresPosterURL];
+    
+    // Set scroll
+    CGFloat contentOffsetY = CGRectGetHeight(self.detailScrollView.bounds);
+    self.detailScrollView.contentInset = UIEdgeInsetsMake(180, 0, 0, 0);
+    self.detailScrollView.contentSize = CGSizeMake(self.detailScrollView.bounds.size.width, contentOffsetY);
+    // self.detailScrollView.backgroundColor = [UIColor yellowColor];
+    // self.scrollContentView.backgroundColor = [UIColor blueColor];
+    NSLog(@"%@", self.detailScrollView);
 }
 
 - (void)didReceiveMemoryWarning {

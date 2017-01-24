@@ -15,7 +15,6 @@
 		8829729A1E3683F500398475 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 882972981E3683F500398475 /* LaunchScreen.storyboard */; };
 		882972AC1E36943600398475 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 882972AB1E36943600398475 /* MovieCell.m */; };
 		882972B11E36AEE800398475 /* MovieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882972B01E36AEE800398475 /* MovieModel.m */; };
-		882972B31E36BCA400398475 /* spam-musubi-emoji.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 882972B21E36BCA400398475 /* spam-musubi-emoji.jpg */; };
 		882972B61E37D2FA00398475 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882972B51E37D2FA00398475 /* DetailsViewController.m */; };
 		88D413370DED09850BF7CFC3 /* libPods-Flicks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E52E62B47B7398E32B0CBB77 /* libPods-Flicks.a */; };
 /* End PBXBuildFile section */
@@ -36,7 +35,6 @@
 		882972AB1E36943600398475 /* MovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 		882972AF1E36AEE800398475 /* MovieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieModel.h; sourceTree = "<group>"; };
 		882972B01E36AEE800398475 /* MovieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieModel.m; sourceTree = "<group>"; };
-		882972B21E36BCA400398475 /* spam-musubi-emoji.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "spam-musubi-emoji.jpg"; sourceTree = "<group>"; };
 		882972B41E37D2FA00398475 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		882972B51E37D2FA00398475 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		8D7642E7761F6381AC2AD1F3 /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 				8829728A1E3683F500398475 /* Supporting Files */,
 				882972AA1E36943600398475 /* MovieCell.h */,
 				882972AB1E36943600398475 /* MovieCell.m */,
-				882972B21E36BCA400398475 /* spam-musubi-emoji.jpg */,
 				882972AF1E36AEE800398475 /* MovieModel.h */,
 				882972B01E36AEE800398475 /* MovieModel.m */,
 			);
@@ -185,7 +182,6 @@
 				8829729A1E3683F500398475 /* LaunchScreen.storyboard in Resources */,
 				882972971E3683F500398475 /* Assets.xcassets in Resources */,
 				882972951E3683F500398475 /* Main.storyboard in Resources */,
-				882972B31E36BCA400398475 /* spam-musubi-emoji.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
