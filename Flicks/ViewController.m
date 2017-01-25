@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) NSArray<MovieModel *> *movies;
 @property (strong, nonatomic) NSString *initialURL;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -31,6 +32,10 @@
     } else if ([self.restorationIdentifier isEqualToString:@"top_rated"]) {
         self.initialURL = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     }
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.movieTableView addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+
     [self fetchMovies];
     
 }
@@ -79,6 +84,7 @@
                                             [models addObject:model];
                                         }
                                         self.movies = models;
+                                        [self.refreshControl endRefreshing];
                                         [self.movieTableView reloadData];
                                         
                                     } else {
