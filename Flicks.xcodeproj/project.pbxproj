@@ -16,6 +16,7 @@
 		882972AC1E36943600398475 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 882972AB1E36943600398475 /* MovieCell.m */; };
 		882972B11E36AEE800398475 /* MovieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882972B01E36AEE800398475 /* MovieModel.m */; };
 		882972B61E37D2FA00398475 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882972B51E37D2FA00398475 /* DetailsViewController.m */; };
+		888A9FB01E3A87D700D96358 /* MoviePosterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 888A9FAF1E3A87D700D96358 /* MoviePosterCollectionViewCell.m */; };
 		88D413370DED09850BF7CFC3 /* libPods-Flicks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E52E62B47B7398E32B0CBB77 /* libPods-Flicks.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,8 @@
 		882972B01E36AEE800398475 /* MovieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieModel.m; sourceTree = "<group>"; };
 		882972B41E37D2FA00398475 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		882972B51E37D2FA00398475 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		888A9FAE1E3A87D700D96358 /* MoviePosterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviePosterCollectionViewCell.h; sourceTree = "<group>"; };
+		888A9FAF1E3A87D700D96358 /* MoviePosterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviePosterCollectionViewCell.m; sourceTree = "<group>"; };
 		8D7642E7761F6381AC2AD1F3 /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		E52E62B47B7398E32B0CBB77 /* libPods-Flicks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flicks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,6 +109,8 @@
 				882972AB1E36943600398475 /* MovieCell.m */,
 				882972AF1E36AEE800398475 /* MovieModel.h */,
 				882972B01E36AEE800398475 /* MovieModel.m */,
+				888A9FAE1E3A87D700D96358 /* MoviePosterCollectionViewCell.h */,
+				888A9FAF1E3A87D700D96358 /* MoviePosterCollectionViewCell.m */,
 			);
 			path = Flicks;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				8829728F1E3683F500398475 /* AppDelegate.m in Sources */,
 				882972AC1E36943600398475 /* MovieCell.m in Sources */,
 				882972B61E37D2FA00398475 /* DetailsViewController.m in Sources */,
+				888A9FB01E3A87D700D96358 /* MoviePosterCollectionViewCell.m in Sources */,
 				882972B11E36AEE800398475 /* MovieModel.m in Sources */,
 				8829728C1E3683F500398475 /* main.m in Sources */,
 			);

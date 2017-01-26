@@ -10,15 +10,18 @@
 #import "MovieCell.h"
 #import "MovieModel.h"
 #import "DetailsViewController.h"
+#import "MoviePosterCollectionViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <MBProgressHUD.h>
 
-@interface ViewController () <UITableViewDataSource>
+@interface ViewController () <UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (strong, nonatomic) NSArray<MovieModel *> *movies;
 @property (strong, nonatomic) NSString *initialURL;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
+
+@property (strong, nonatomic) UICollectionView *collectionView;
 
 @end
 
@@ -28,6 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.movieTableView.dataSource = self;
+
     if ([self.restorationIdentifier isEqualToString:@"now_playing"]) {
         self.initialURL = @"https://api.themoviedb.org/3/movie/now_playing?api_key=";
     } else if ([self.restorationIdentifier isEqualToString:@"top_rated"]) {
@@ -37,6 +41,26 @@
     [self.movieTableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
 
+    // Set up Collection View and layout
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    CGFloat screenWidth = CGRectGetWidth(self.view.bounds);
+    CGFloat itemHeight = 150;
+    CGFloat itemWidth = screenWidth / 3;
+    layout.minimumLineSpacing = 0;
+    layout.minimumInteritemSpacing = 0;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    [collectionView registerClass:[MoviePosterCollectionViewCell class] forCellWithReuseIdentifier:@"MoviePosterCollectionViewCell"];
+    collectionView.dataSource = self;
+    collectionView.delegate = self;
+    collectionView.backgroundColor = [UIColor magentaColor];
+    [self.view addSubview:collectionView];
+    // self.collectionView.hidden = YES;
+    self.movieTableView.hidden = YES;
+    self.collectionView = collectionView;
+    
     [self fetchMovies];
     
 }
@@ -68,36 +92,37 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-            completionHandler:^(NSData * _Nullable data,
-                                NSURLResponse * _Nullable response,
-                                NSError * _Nullable error) {
-                                    if (!error) {
-                                        NSError *jsonError = nil;
-                                        NSDictionary *responseDictionary =
-                                            [NSJSONSerialization JSONObjectWithData:data
-                                                    options:kNilOptions
-                                                    error:&jsonError];
-                                        // NSLog(@"Response: %@", responseDictionary);
-                                        NSArray *results = responseDictionary[@"results"];
-                                        NSMutableArray *models = [NSMutableArray array];
-                                        
-                                        for (NSDictionary *result in results) {
-                                            MovieModel *model = [[MovieModel alloc] initWithDictionary:result];
-                                            // NSLog(@"Model - %@", model);
-                                            [models addObject:model];
-                                        }
-                                        self.movies = models;
-                                        [self.movieTableView reloadData];
-                                        
-                                    } else {
-                                        NSLog(@"An error occurred: %@",
-                                                          error.description);
-                                        self.errorView.hidden = NO;
-                                        [self.view bringSubviewToFront:self.errorView];
-                                    }
-                                    [self.refreshControl endRefreshing];
-                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                }];
+        completionHandler:^(NSData * _Nullable data,
+            NSURLResponse * _Nullable response,
+            NSError * _Nullable error) {
+                if (!error) {
+                    NSError *jsonError = nil;
+                    NSDictionary *responseDictionary =
+                        [NSJSONSerialization JSONObjectWithData:data
+                                options:kNilOptions
+                                error:&jsonError];
+                    // NSLog(@"Response: %@", responseDictionary);
+                    NSArray *results = responseDictionary[@"results"];
+                    NSMutableArray *models = [NSMutableArray array];
+                    
+                    for (NSDictionary *result in results) {
+                        MovieModel *model = [[MovieModel alloc] initWithDictionary:result];
+                        // NSLog(@"Model - %@", model);
+                        [models addObject:model];
+                    }
+                    self.movies = models;
+                    [self.movieTableView reloadData];
+                    [self.collectionView reloadData];
+                    
+                } else {
+                    NSLog(@"An error occurred: %@", error.description);
+                    self.errorView.hidden = NO;
+                    [self.view bringSubviewToFront:self.errorView];
+                }
+                [self.refreshControl endRefreshing];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            }
+        ];
     [task resume];
 
 }
@@ -125,6 +150,20 @@
     
     // NSLog(@"row number = %ld", indexPath.row);
     
+    return cell;
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.movies.count;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    MoviePosterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MoviePosterCollectionViewCell" forIndexPath:indexPath];
+    MovieModel *model = [self.movies objectAtIndex:indexPath.item];
+    cell.model = model;
+    [cell reloadData];
     return cell;
 }
 
