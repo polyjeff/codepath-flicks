@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSArray<MovieModel *> *movies;
 @property (strong, nonatomic) NSString *initialURL;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIView *errorView;
 
 @end
 
@@ -53,6 +54,8 @@
     NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
     NSString *urlString =
     [self.initialURL stringByAppendingString:apiKey];
+    self.errorView.hidden = YES;
+    NSLog(@"Rehiding errorView");
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
@@ -84,13 +87,15 @@
                                             [models addObject:model];
                                         }
                                         self.movies = models;
-                                        [self.refreshControl endRefreshing];
                                         [self.movieTableView reloadData];
                                         
                                     } else {
                                         NSLog(@"An error occurred: %@",
                                                           error.description);
+                                        self.errorView.hidden = NO;
+                                        [self.view bringSubviewToFront:self.errorView];
                                     }
+                                    [self.refreshControl endRefreshing];
                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                                 }];
     [task resume];
