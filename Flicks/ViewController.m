@@ -51,7 +51,7 @@
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectInset(self.view.bounds, 0, 64) collectionViewLayout:layout];
     [collectionView registerClass:[MoviePosterCollectionViewCell class] forCellWithReuseIdentifier:@"MoviePosterCollectionViewCell"];
     collectionView.dataSource = self;
     collectionView.delegate = self;
@@ -66,11 +66,17 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    MovieCell *cellPtr = sender;
-    NSIndexPath *indexPath = [self.movieTableView indexPathForCell:cellPtr];
-    MovieModel *model = [self.movies objectAtIndex:indexPath.row];
-    DetailsViewController *dvc = segue.destinationViewController;
-    dvc.movieModel = model;
+    if ([sender isKindOfClass:[NSIndexPath class]]) {
+        MovieModel *model = [self.movies objectAtIndex:((NSIndexPath *)sender).row];
+        DetailsViewController *dvc = segue.destinationViewController;
+        dvc.movieModel = model;
+    } else if ([sender isKindOfClass:[MovieCell class]]) {
+        MovieCell *cellPtr = sender;
+        NSIndexPath *indexPath = [self.movieTableView indexPathForCell:cellPtr];
+        MovieModel *model = [self.movies objectAtIndex:indexPath.row];
+        DetailsViewController *dvc = segue.destinationViewController;
+        dvc.movieModel = model;
+    }
 }
 
 - (void)fetchMovies
@@ -79,7 +85,7 @@
     NSString *urlString =
     [self.initialURL stringByAppendingString:apiKey];
     self.errorView.hidden = YES;
-    NSLog(@"Rehiding errorView");
+    // NSLog(@"Rehiding errorView");
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
@@ -146,7 +152,7 @@
     cell.titleLabel.text = model.title;
     cell.overviewLabel.text = model.movieDescription;
     cell.posterImage.contentMode = UIViewContentModeScaleAspectFit;
-    [cell.posterImage setImageWithURL:model.posterURL];
+    [cell.posterImage setImageWithURL:model.hiresPosterURL];
     
     // NSLog(@"row number = %ld", indexPath.row);
     
@@ -165,6 +171,10 @@
     cell.model = model;
     [cell reloadData];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"showDetail" sender:indexPath];
 }
 
 @end

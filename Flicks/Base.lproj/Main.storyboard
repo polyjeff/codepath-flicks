@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gPa-nX-I3f" id="lCS-yO-QXe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5AJ-fA-Zbz">
@@ -57,7 +57,7 @@
                                             <outlet property="overviewLabel" destination="IZ3-AP-Bh7" id="7vQ-HK-zIq"/>
                                             <outlet property="posterImage" destination="5AJ-fA-Zbz" id="KNJ-lE-gqz"/>
                                             <outlet property="titleLabel" destination="yo4-VS-Iuo" id="Qu1-cO-G8J"/>
-                                            <segue destination="pnc-HJ-TlV" kind="show" id="UfZ-iZ-9RO"/>
+                                            <segue destination="pnc-HJ-TlV" kind="show" identifier="showDetail" id="UfZ-iZ-9RO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -184,7 +184,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IWw-gc-zfn" id="70d-rF-pI5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LnA-2L-BYT">
@@ -211,7 +211,7 @@
                                             <outlet property="overviewLabel" destination="F5Y-eF-Bdw" id="8Yh-we-Zeu"/>
                                             <outlet property="posterImage" destination="LnA-2L-BYT" id="d0m-30-vWo"/>
                                             <outlet property="titleLabel" destination="WMC-Pa-S8d" id="wXs-lc-x0G"/>
-                                            <segue destination="pnc-HJ-TlV" kind="show" id="3Yo-Wb-lDX"/>
+                                            <segue destination="pnc-HJ-TlV" kind="show" identifier="showDetail" id="3Yo-Wb-lDX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
