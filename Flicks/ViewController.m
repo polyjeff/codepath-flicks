@@ -30,6 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.movieTableView.dataSource = self;
 
     if ([self.restorationIdentifier isEqualToString:@"now_playing"]) {
@@ -175,6 +178,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"showDetail" sender:indexPath];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.collectionView.frame = self.view.bounds;
 }
 
 @end
