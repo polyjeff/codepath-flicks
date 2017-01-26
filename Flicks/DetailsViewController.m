@@ -31,14 +31,25 @@
     // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.releaseDate);
     self.detailMovieTitle.text = self.movieModel.title;
     self.detailMovieDescription.text = self.movieModel.movieDescription;
+    [self.detailMovieDescription sizeToFit];
+    
+    CGFloat labelMaxY = CGRectGetMaxY(self.detailMovieDescription.frame);
+    CGRect contentFrame = self.scrollContentView.frame;
+    contentFrame.size.height = labelMaxY + 20;
+    contentFrame.origin.y = (labelMaxY + 20) * 0.75;
+    self.scrollContentView.frame = contentFrame;
+    
     self.releaseDate.text = [NSString stringWithFormat:@"Released %@", self.movieModel.releaseDate];
     self.averageVote.text = [NSString stringWithFormat:@"Score: %@/10", self.movieModel.voteAverage];
     [self.detailImageView setImageWithURL:self.movieModel.hiresPosterURL];
     
     // Set scroll
-    CGFloat contentOffsetY = CGRectGetHeight(self.detailScrollView.bounds);
-    self.detailScrollView.contentInset = UIEdgeInsetsMake(180, 0, 0, 0);
+    CGFloat contentOffsetY = CGRectGetMaxY(self.scrollContentView.frame);
+    CGRect scrollViewFrame = self.detailScrollView.frame;
+    scrollViewFrame.size.height = CGRectGetHeight(self.scrollContentView.bounds);
+    self.detailScrollView.frame = scrollViewFrame;
     self.detailScrollView.contentSize = CGSizeMake(self.detailScrollView.bounds.size.width, contentOffsetY);
+    
     // self.detailScrollView.backgroundColor = [UIColor yellowColor];
     // self.scrollContentView.backgroundColor = [UIColor blueColor];
     NSLog(@"%@", self.detailScrollView);
