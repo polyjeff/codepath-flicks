@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gPa-nX-I3f" id="lCS-yO-QXe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5AJ-fA-Zbz">
@@ -184,7 +184,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IWw-gc-zfn" id="70d-rF-pI5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LnA-2L-BYT">
@@ -266,7 +266,7 @@
         <scene sceneID="sST-In-JvX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VEJ-Ix-AgU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Now Playing" id="nAW-69-OSt"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="MovieProjector-30.png" id="nAW-69-OSt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Tn-Ym-RPY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -285,7 +285,7 @@
         <scene sceneID="WO6-FL-w5b">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MWW-MH-7fJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Top Rated" id="Yvf-b3-wak"/>
+                    <tabBarItem key="tabBarItem" title="Top Rated" image="ChristmasStar-30.png" id="Yvf-b3-wak"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="c6c-UQ-hIe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -318,6 +318,10 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="ChristmasStar-30.png" width="30" height="30"/>
+        <image name="MovieProjector-30.png" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UfZ-iZ-9RO"/>
     </inferredMetricsTieBreakers>

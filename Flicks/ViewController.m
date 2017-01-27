@@ -30,12 +30,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
+
+    // So the subviews don't underlap the navbar and tab bar
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.movieTableView.dataSource = self;
 
+    // Set URL to populate from based on the restoration ID from the storyboard
     if ([self.restorationIdentifier isEqualToString:@"now_playing"]) {
         self.initialURL = @"https://api.themoviedb.org/3/movie/now_playing?api_key=";
     } else if ([self.restorationIdentifier isEqualToString:@"top_rated"]) {
@@ -60,6 +61,7 @@
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
 
+    
     // Initial state
     self.collectionView.hidden = YES;
     self.movieTableView.hidden = NO;
@@ -77,9 +79,11 @@
     self.listRefreshControl = [[UIRefreshControl alloc]init];
     [self.listRefreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.movieTableView addSubview:self.listRefreshControl];
+    
     self.collectionRefreshControl = [[UIRefreshControl alloc]init];
     [self.collectionRefreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.collectionView addSubview:self.collectionRefreshControl];
+    
     
     // And... get the data!
     [self fetchMovies];

@@ -17,6 +17,8 @@
 		882972B11E36AEE800398475 /* MovieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 882972B01E36AEE800398475 /* MovieModel.m */; };
 		882972B61E37D2FA00398475 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 882972B51E37D2FA00398475 /* DetailsViewController.m */; };
 		888A9FB01E3A87D700D96358 /* MoviePosterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 888A9FAF1E3A87D700D96358 /* MoviePosterCollectionViewCell.m */; };
+		888A9FB71E3BB31E00D96358 /* ChristmasStar-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 888A9FB51E3BB31E00D96358 /* ChristmasStar-30.png */; };
+		888A9FB81E3BB31E00D96358 /* MovieProjector-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 888A9FB61E3BB31E00D96358 /* MovieProjector-30.png */; };
 		88D413370DED09850BF7CFC3 /* libPods-Flicks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E52E62B47B7398E32B0CBB77 /* libPods-Flicks.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		882972B51E37D2FA00398475 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		888A9FAE1E3A87D700D96358 /* MoviePosterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviePosterCollectionViewCell.h; sourceTree = "<group>"; };
 		888A9FAF1E3A87D700D96358 /* MoviePosterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviePosterCollectionViewCell.m; sourceTree = "<group>"; };
+		888A9FB51E3BB31E00D96358 /* ChristmasStar-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChristmasStar-30.png"; sourceTree = "<group>"; };
+		888A9FB61E3BB31E00D96358 /* MovieProjector-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MovieProjector-30.png"; sourceTree = "<group>"; };
 		8D7642E7761F6381AC2AD1F3 /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		E52E62B47B7398E32B0CBB77 /* libPods-Flicks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flicks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,6 +115,8 @@
 				882972B01E36AEE800398475 /* MovieModel.m */,
 				888A9FAE1E3A87D700D96358 /* MoviePosterCollectionViewCell.h */,
 				888A9FAF1E3A87D700D96358 /* MoviePosterCollectionViewCell.m */,
+				888A9FB51E3BB31E00D96358 /* ChristmasStar-30.png */,
+				888A9FB61E3BB31E00D96358 /* MovieProjector-30.png */,
 			);
 			path = Flicks;
 			sourceTree = "<group>";
@@ -186,7 +192,9 @@
 			files = (
 				8829729A1E3683F500398475 /* LaunchScreen.storyboard in Resources */,
 				882972971E3683F500398475 /* Assets.xcassets in Resources */,
+				888A9FB81E3BB31E00D96358 /* MovieProjector-30.png in Resources */,
 				882972951E3683F500398475 /* Main.storyboard in Resources */,
+				888A9FB71E3BB31E00D96358 /* ChristmasStar-30.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
