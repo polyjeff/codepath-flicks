@@ -118,7 +118,7 @@
     NSString *urlString =
     [self.initialURL stringByAppendingString:apiKey];
     self.errorView.hidden = YES;
-    NSLog(@"Inside fetchMovies");
+    // NSLog(@"Inside fetchMovies");
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
