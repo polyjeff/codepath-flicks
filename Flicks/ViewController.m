@@ -18,7 +18,8 @@
 
 @property (strong, nonatomic) NSArray<MovieModel *> *movies;
 @property (strong, nonatomic) NSString *initialURL;
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) UIRefreshControl *listRefreshControl;
+@property (strong, nonatomic) UIRefreshControl *collectionRefreshControl;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
 
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -40,10 +41,7 @@
     } else if ([self.restorationIdentifier isEqualToString:@"top_rated"]) {
         self.initialURL = @"https://api.themoviedb.org/3/movie/top_rated?api_key=";
     }
-    self.refreshControl = [[UIRefreshControl alloc]init];
-    [self.movieTableView addSubview:self.refreshControl];
-    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
-
+    
     // Set up Collection View and layout
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     CGFloat screenWidth = CGRectGetWidth(self.view.bounds);
@@ -60,12 +58,42 @@
     collectionView.delegate = self;
     collectionView.backgroundColor = [UIColor magentaColor];
     [self.view addSubview:collectionView];
-    // self.collectionView.hidden = YES;
-    self.movieTableView.hidden = YES;
     self.collectionView = collectionView;
+
+    // Initial state
+    self.collectionView.hidden = YES;
+    self.movieTableView.hidden = NO;
     
+    // Build segmented control
+    NSArray *segText = [NSArray arrayWithObjects:@"List", @"Grid", nil];
+    UISegmentedControl *segControl = [[UISegmentedControl alloc] initWithItems:segText];
+    segControl.selectedSegmentIndex = 0;
+    [segControl addTarget:self action:@selector(changeSegState:) forControlEvents:UIControlEventValueChanged];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:segControl];
+    self.navigationItem.rightBarButtonItem = barButtonItem;
+    
+    
+    // Add separate pull-to-refresh controls
+    self.listRefreshControl = [[UIRefreshControl alloc]init];
+    [self.listRefreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.movieTableView addSubview:self.listRefreshControl];
+    self.collectionRefreshControl = [[UIRefreshControl alloc]init];
+    [self.collectionRefreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:self.collectionRefreshControl];
+    
+    // And... get the data!
     [self fetchMovies];
-    
+}
+
+- (void)changeSegState:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == 0) {
+        self.collectionView.hidden = YES;
+        self.movieTableView.hidden = NO;
+    } else {
+        self.collectionView.hidden = NO;
+        self.movieTableView.hidden = YES;
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -88,7 +116,7 @@
     NSString *urlString =
     [self.initialURL stringByAppendingString:apiKey];
     self.errorView.hidden = YES;
-    // NSLog(@"Rehiding errorView");
+    NSLog(@"Inside fetchMovies");
     
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
@@ -128,7 +156,8 @@
                     self.errorView.hidden = NO;
                     [self.view bringSubviewToFront:self.errorView];
                 }
-                [self.refreshControl endRefreshing];
+                [self.listRefreshControl endRefreshing];
+                [self.collectionRefreshControl endRefreshing];
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
         ];
