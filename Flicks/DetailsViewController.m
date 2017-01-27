@@ -66,7 +66,7 @@
     [self.detailMovieDescription sizeToFit];
     
     self.releaseDate.text = [NSString stringWithFormat:@"Released %@", self.movieModel.releaseDate];
-    self.averageVote.text = [NSString stringWithFormat:@"Score: %@/10", self.movieModel.voteAverage];
+    self.averageVote.text = [NSString stringWithFormat:@"Score: %.1f/10", self.movieModel.voteAverage.doubleValue];
     self.runtime.text = @"Run time: ..."; // Filled in later
     [self.detailImageView setImageWithURL:self.movieModel.hiresPosterURL];
     

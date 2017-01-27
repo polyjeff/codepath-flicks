@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *movieDescription;
 @property (nonatomic, strong) NSString *releaseDate;
-@property (nonatomic, strong) NSString *voteAverage;
+@property (nonatomic, strong) NSNumber *voteAverage;
 @property (nonatomic, strong) NSURL *posterURL;
 @property (nonatomic, strong) NSURL *hiresPosterURL;
 @property (nonatomic, strong) NSString *movieID;
