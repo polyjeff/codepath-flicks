@@ -22,6 +22,9 @@
         self.posterURL = [NSURL URLWithString:urlString];
         NSString *urlHiresString = [NSString stringWithFormat:@"https://image.tmdb.org/t/p/original%@", dictionary[@"poster_path"]];
         self.hiresPosterURL = [NSURL URLWithString:urlHiresString];
+        self.movieID = dictionary[@"id"];
+        // self.trailerID will be set in the Detail View Controller implementation
+        // self.runtime will be set in the Detail View Controller implementation
     }
     return self;
 }
