@@ -8,6 +8,7 @@
 
 #import "DetailsViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
@@ -49,7 +50,7 @@
                                                                       error:&jsonError];
                                     // NSLog(@"Response: %@", responseDictionary);
                                     // Terrible assumptions made here...
-                                    self.movieModel.trailerID = responseDictionary[@"videos"][@"results"][0][@"id"];
+                                    self.movieModel.trailerID = responseDictionary[@"videos"][@"results"][0][@"key"];
                                     self.movieModel.runtime = responseDictionary[@"runtime"];
                                     // Reload values on the view that depended on this data
                                     [self fillInTheBlanks];
@@ -81,11 +82,37 @@
     scrollViewFrame.size.height = CGRectGetHeight(self.scrollContentView.bounds);
     self.detailScrollView.frame = scrollViewFrame;
     self.detailScrollView.contentSize = CGSizeMake(self.detailScrollView.bounds.size.width, contentOffsetY);
+
+    UIButton *playButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [playButton setTitle:@"Play Video" forState:UIControlStateNormal];
+    [playButton sizeToFit];
+    [playButton addTarget:self action:@selector(playVideo) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:playButton];
+    self.navigationItem.rightBarButtonItem = barButtonItem;
 }
 
 - (void)fillInTheBlanks {
     self.runtime.text = [NSString stringWithFormat:@"Run time: %@ minutes", self.movieModel.runtime];
     // Create "Play Trailer" button... later
+}
+
+- (void) playVideo
+{
+    NSLog(@"Inside playVideo, trailer ID = %@", self.movieModel.trailerID);
+    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.movieModel.trailerID];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
+    [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+}
+
+- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:notification.object];
+    MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
+    if (finishReason == MPMovieFinishReasonPlaybackError)
+    {
+        NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
+        // Handle error
+    }
 }
 
 - (void)didReceiveMemoryWarning {
