@@ -57,6 +57,7 @@
     [collectionView registerClass:[MoviePosterCollectionViewCell class] forCellWithReuseIdentifier:@"MoviePosterCollectionViewCell"];
     collectionView.dataSource = self;
     collectionView.delegate = self;
+    collectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
 
