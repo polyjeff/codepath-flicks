@@ -92,7 +92,7 @@
 }
 
 - (void)fillInTheBlanks {
-    self.runtime.text = [NSString stringWithFormat:@"Run time: %@ minutes", self.movieModel.runtime];
+    self.runtime.text = [NSString stringWithFormat:@"Run time: %d minutes", self.movieModel.runtime.intValue];
     // Create "Play Trailer" button... later
 }
 

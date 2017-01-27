@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSURL *posterURL;
 @property (nonatomic, strong) NSURL *hiresPosterURL;
 @property (nonatomic, strong) NSString *movieID;
-@property (nonatomic, strong) NSString *runtime;
+@property (nonatomic, strong) NSNumber *runtime;
 @property (nonatomic, strong) NSString *trailerID;
 
 @end
