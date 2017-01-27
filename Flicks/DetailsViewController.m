@@ -24,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     // Make secondary network call
     NSString *apiKey = @"a07e22bc18f5cb106bfe4cc1f83ad8ed";
@@ -48,14 +47,11 @@
                                     [NSJSONSerialization JSONObjectWithData:data
                                                                     options:kNilOptions
                                                                       error:&jsonError];
-                                    NSLog(@"Response: %@", responseDictionary);
+                                    // NSLog(@"Response: %@", responseDictionary);
                                     // Terrible assumptions made here...
                                     self.movieModel.trailerID = responseDictionary[@"videos"][@"results"][0][@"id"];
                                     self.movieModel.runtime = responseDictionary[@"runtime"];
-                                    NSLog(@"Trailer id = %@, runtime = %@", self.movieModel.trailerID, self.movieModel.runtime);
-                                    // self.movies = models;
-                                    // [self.movieTableView reloadData];
-                                    // [self.collectionView reloadData];
+                                    // Reload values on the view that depended on this data
                                     [self fillInTheBlanks];
                                 } else {
                                     NSLog(@"An error occurred: %@", error.description);
@@ -64,10 +60,6 @@
                   ];
     [task resume];
     
-    // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.movieDescription);
-    // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.posterURL);
-    // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.hiresPosterURL);
-    // NSLog(@"Inside DVC: viewDidLoad: %@", self.movieModel.releaseDate);
     self.detailMovieTitle.text = self.movieModel.title;
     self.detailMovieDescription.text = self.movieModel.movieDescription;
     [self.detailMovieDescription sizeToFit];
@@ -89,18 +81,11 @@
     scrollViewFrame.size.height = CGRectGetHeight(self.scrollContentView.bounds);
     self.detailScrollView.frame = scrollViewFrame;
     self.detailScrollView.contentSize = CGSizeMake(self.detailScrollView.bounds.size.width, contentOffsetY);
-    
-    // self.detailScrollView.backgroundColor = [UIColor yellowColor];
-    // self.scrollContentView.backgroundColor = [UIColor blueColor];
-    NSLog(@"%@", self.detailScrollView);
-
-
 }
 
 - (void)fillInTheBlanks {
-    NSLog(@"SECOND TIME: Trailer id = %@, runtime = %@", self.movieModel.trailerID, self.movieModel.runtime);
     self.runtime.text = [NSString stringWithFormat:@"Run time: %@ minutes", self.movieModel.runtime];
-
+    // Create "Play Trailer" button... later
 }
 
 - (void)didReceiveMemoryWarning {

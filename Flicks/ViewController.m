@@ -57,7 +57,6 @@
     [collectionView registerClass:[MoviePosterCollectionViewCell class] forCellWithReuseIdentifier:@"MoviePosterCollectionViewCell"];
     collectionView.dataSource = self;
     collectionView.delegate = self;
-    collectionView.backgroundColor = [UIColor magentaColor];
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
 
@@ -83,7 +82,6 @@
     self.collectionRefreshControl = [[UIRefreshControl alloc]init];
     [self.collectionRefreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     [self.collectionView addSubview:self.collectionRefreshControl];
-    
     
     // And... get the data!
     [self fetchMovies];
@@ -189,8 +187,6 @@
     cell.overviewLabel.text = model.movieDescription;
     cell.posterImage.contentMode = UIViewContentModeScaleAspectFit;
     [cell.posterImage setImageWithURL:model.hiresPosterURL];
-    
-    // NSLog(@"row number = %ld", indexPath.row);
     
     return cell;
 }
